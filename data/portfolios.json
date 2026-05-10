@@ -1,0 +1,145 @@
+{
+  "portfolios": [
+    {
+      "id": "us-etf-1",
+      "name": "US Tech & Growth ETF Portfolio",
+      "description": "High-conviction ETF basket targeting US technology dominance, AI infrastructure, and semiconductor leadership. Managed via Motilal Oswal Riise App.",
+      "type": "ETF",
+      "market": "US",
+      "currency": "USD",
+      "theme": "Technology",
+      "created_date": "Jan 2025",
+      "holdings": [
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust (Nasdaq 100)",
+          "allocation_pct": 35,
+          "buy_price": 480.00,
+          "quantity": 5
+        },
+        {
+          "ticker": "VGT",
+          "name": "Vanguard Information Technology ETF",
+          "allocation_pct": 25,
+          "buy_price": 520.00,
+          "quantity": 3
+        },
+        {
+          "ticker": "SOXX",
+          "name": "iShares Semiconductor ETF",
+          "allocation_pct": 20,
+          "buy_price": 210.00,
+          "quantity": 6
+        },
+        {
+          "ticker": "ARKK",
+          "name": "ARK Innovation ETF",
+          "allocation_pct": 10,
+          "buy_price": 48.00,
+          "quantity": 12
+        },
+        {
+          "ticker": "SCHD",
+          "name": "Schwab US Dividend Equity ETF",
+          "allocation_pct": 10,
+          "buy_price": 78.00,
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "id": "us-etf-2",
+      "name": "US Macro & Dividend ETF Portfolio",
+      "description": "Diversified macro exposure across US equities, bonds, REITs, and high-dividend themes. Capital preservation with growth. Managed via Motilal Oswal Riise App.",
+      "type": "ETF",
+      "market": "US",
+      "currency": "USD",
+      "theme": "Macro Diversified",
+      "created_date": "Mar 2025",
+      "holdings": [
+        {
+          "ticker": "SPY",
+          "name": "SPDR S&P 500 ETF Trust",
+          "allocation_pct": 40,
+          "buy_price": 510.00,
+          "quantity": 4
+        },
+        {
+          "ticker": "VNQ",
+          "name": "Vanguard Real Estate ETF",
+          "allocation_pct": 20,
+          "buy_price": 82.00,
+          "quantity": 10
+        },
+        {
+          "ticker": "TLT",
+          "name": "iShares 20+ Year Treasury Bond ETF",
+          "allocation_pct": 20,
+          "buy_price": 88.00,
+          "quantity": 9
+        },
+        {
+          "ticker": "GLD",
+          "name": "SPDR Gold Shares ETF",
+          "allocation_pct": 20,
+          "buy_price": 218.00,
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "id": "india-ukeu-trade",
+      "name": "UK-EU Trade Deal Opportunity",
+      "description": "Thematic portfolio of Indian companies positioned to benefit from the UK-EU trade deal over 6-12 months. Focus on exporters, pharma, textiles, and IT services with EU/UK revenue exposure.",
+      "type": "Equity",
+      "market": "IN",
+      "currency": "INR",
+      "theme": "Trade Deal",
+      "created_date": "Apr 2025",
+      "holdings": [
+        {
+          "ticker": "INFY.NS",
+          "name": "Infosys Ltd",
+          "allocation_pct": 20,
+          "buy_price": 1680.00,
+          "quantity": 50
+        },
+        {
+          "ticker": "WIPRO.NS",
+          "name": "Wipro Ltd",
+          "allocation_pct": 15,
+          "buy_price": 278.00,
+          "quantity": 200
+        },
+        {
+          "ticker": "SUNPHARMA.NS",
+          "name": "Sun Pharmaceutical Industries",
+          "allocation_pct": 20,
+          "buy_price": 1620.00,
+          "quantity": 40
+        },
+        {
+          "ticker": "DRREDDY.NS",
+          "name": "Dr. Reddy's Laboratories",
+          "allocation_pct": 15,
+          "buy_price": 6800.00,
+          "quantity": 8
+        },
+        {
+          "ticker": "PAGEIND.NS",
+          "name": "Page Industries Ltd",
+          "allocation_pct": 15,
+          "buy_price": 48000.00,
+          "quantity": 1
+        },
+        {
+          "ticker": "TCS.NS",
+          "name": "Tata Consultancy Services",
+          "allocation_pct": 15,
+          "buy_price": 3680.00,
+          "quantity": 15
+        }
+      ]
+    }
+  ]
+}
