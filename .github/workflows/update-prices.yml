@@ -1,0 +1,40 @@
+name: Update Portfolio Prices
+
+on:
+  schedule:
+    - cron: '0 9 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  update-prices:
+    name: Fetch & Commit Latest Prices
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install yfinance
+
+      - name: Fetch live prices
+        run: python scripts/update_prices.py
+
+      - name: Commit updated prices.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update portfolio prices"
+          file_pattern: data/prices.json
+          commit_user_name: "NNR Price Bot"
+          commit_user_email: "bot@nielnray.com"
+          commit_author: "NNR Price Bot <bot@nielnray.com>"
+          skip_dirty_check: false
