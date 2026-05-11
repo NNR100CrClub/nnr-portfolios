@@ -1,21 +1,81 @@
 {
-  "last_updated": "2025-01-01T00:00:00",
-  "source": "Placeholder — run update_prices.py or trigger GitHub Action to populate live data",
+  "last_updated": "2026-05-11T05:10:54",
+  "source": "Yahoo Finance via yfinance",
   "prices": {
-    "QQQ":         { "price": 480.00, "change_pct": 0.0,  "name": "Invesco QQQ Trust" },
-    "VGT":         { "price": 520.00, "change_pct": 0.0,  "name": "Vanguard IT ETF" },
-    "SOXX":        { "price": 210.00, "change_pct": 0.0,  "name": "iShares Semiconductor ETF" },
-    "ARKK":        { "price": 48.00,  "change_pct": 0.0,  "name": "ARK Innovation ETF" },
-    "SCHD":        { "price": 78.00,  "change_pct": 0.0,  "name": "Schwab Dividend ETF" },
-    "SPY":         { "price": 510.00, "change_pct": 0.0,  "name": "SPDR S&P 500 ETF" },
-    "VNQ":         { "price": 82.00,  "change_pct": 0.0,  "name": "Vanguard Real Estate ETF" },
-    "TLT":         { "price": 88.00,  "change_pct": 0.0,  "name": "iShares 20yr Treasury ETF" },
-    "GLD":         { "price": 218.00, "change_pct": 0.0,  "name": "SPDR Gold Shares" },
-    "INFY.NS":     { "price": 1680.0, "change_pct": 0.0,  "name": "Infosys Ltd" },
-    "WIPRO.NS":    { "price": 278.0,  "change_pct": 0.0,  "name": "Wipro Ltd" },
-    "SUNPHARMA.NS":{ "price": 1620.0, "change_pct": 0.0,  "name": "Sun Pharma" },
-    "DRREDDY.NS":  { "price": 6800.0, "change_pct": 0.0,  "name": "Dr Reddy's Labs" },
-    "PAGEIND.NS":  { "price": 48000.0,"change_pct": 0.0,  "name": "Page Industries" },
-    "TCS.NS":      { "price": 3680.0, "change_pct": 0.0,  "name": "TCS" }
+    "QQQ": {
+      "price": 711.23,
+      "change_pct": 2.34,
+      "name": "Invesco QQQ Trust (Nasdaq 100)"
+    },
+    "VGT": {
+      "price": 112.44,
+      "change_pct": 2.68,
+      "name": "Vanguard Information Technology ETF"
+    },
+    "SOXX": {
+      "price": 520.3,
+      "change_pct": 5.67,
+      "name": "iShares Semiconductor ETF"
+    },
+    "ARKK": {
+      "price": 79.12,
+      "change_pct": 1.53,
+      "name": "ARK Innovation ETF"
+    },
+    "SCHD": {
+      "price": 31.62,
+      "change_pct": 0.25,
+      "name": "Schwab US Dividend Equity ETF"
+    },
+    "SPY": {
+      "price": 737.62,
+      "change_pct": 0.83,
+      "name": "SPDR S&P 500 ETF Trust"
+    },
+    "VNQ": {
+      "price": 96.62,
+      "change_pct": 0.24,
+      "name": "Vanguard Real Estate ETF"
+    },
+    "TLT": {
+      "price": 86.08,
+      "change_pct": 0.5,
+      "name": "iShares 20+ Year Treasury Bond ETF"
+    },
+    "GLD": {
+      "price": 433.77,
+      "change_pct": 0.48,
+      "name": "SPDR Gold Shares ETF"
+    },
+    "INFY.NS": {
+      "price": 1180.0,
+      "change_pct": 0.07,
+      "name": "Infosys Ltd"
+    },
+    "WIPRO.NS": {
+      "price": 197.55,
+      "change_pct": -0.18,
+      "name": "Wipro Ltd"
+    },
+    "SUNPHARMA.NS": {
+      "price": 1875.0,
+      "change_pct": 1.47,
+      "name": "Sun Pharmaceutical Industries"
+    },
+    "DRREDDY.NS": {
+      "price": 1283.5,
+      "change_pct": -0.8,
+      "name": "Dr. Reddy's Laboratories"
+    },
+    "PAGEIND.NS": {
+      "price": 36715.0,
+      "change_pct": -1.74,
+      "name": "Page Industries Ltd"
+    },
+    "TCS.NS": {
+      "price": 2397.0,
+      "change_pct": 0.11,
+      "name": "Tata Consultancy Services"
+    }
   }
 }
