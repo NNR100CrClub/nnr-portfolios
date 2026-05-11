@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NNR Portfolio Tracker — Curated by CA Sanjay Ray Chowdhury</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0F1F3D;
+      --navy-mid:    #1A3260;
+      --navy-light:  #243B6E;
+      --gold:        #C9913A;
+      --gold-light:  #E8B86D;
+      --green:       #10B981;
+      --green-bg:    #D1FAE5;
+      --red:         #EF4444;
+      --red-bg:      #FEE2E2;
+      --slate:       #64748B;
+      --border:      #E2E8F0;
+      --bg:          #F1F5F9;
+      --card:        #FFFFFF;
+      --text:        #0F172A;
+      --text-muted:  #64748B;
+      --radius:      14px;
+      --shadow:      0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+    .logo-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: white;
+    }
+    .logo-text p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .last-updated {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.55);
+    }
+    .last-updated span {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #162B4F 100%);
+      color: white;
+      padding: 56px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(201,145,58,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,145,58,0.18);
+      border: 1px solid rgba(201,145,58,0.35);
+      color: var(--gold-light);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h2 {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+    .hero h2 span { color: var(--gold-light); }
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stat-val {
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+    }
+    .hero-stat-val.pos { color: #4ADE80; }
+    .hero-stat-val.neg { color: #F87171; }
+    .hero-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+      align-self: stretch;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section-count {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--navy-light); color: var(--navy); }
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── PORTFOLIO CARD ── */
+    .portfolio-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .card-top {
+      padding: 22px 22px 18px;
+    }
+    .card-badges {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 5px;
+    }
+    .badge-equity   { background: #EFF6FF; color: #1D4ED8; }
+    .badge-etf      { background: #F0FDF4; color: #15803D; }
+    .badge-india    { background: #FFF7ED; color: #C2410C; }
+    .badge-us       { background: #F5F3FF; color: #6D28D9; }
+    .badge-theme    { background: #FFF1F2; color: #BE123C; }
+    .badge-live     { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+
+    .card-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .card-return-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--bg);
+      border-radius: 10px;
+    }
+    .card-return-main {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-return-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+    .card-return-val {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .card-return-val.pos { color: var(--green); }
+    .card-return-val.neg { color: var(--red); }
+    .card-return-val.neutral { color: var(--text); }
+    .card-value-info {
+      text-align: right;
+    }
+    .card-value-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+    .card-value-amt {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .period-returns {
+      display: flex;
+      gap: 16px;
+      margin: 14px 0 6px;
+    }
+    .period-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .period-label {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .period-val {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .period-val.pos { color: var(--green); }
+    .period-val.neg { color: var(--red); }
+    .period-val.na  { color: var(--text-muted); }
+
+    /* Mini chart */
+    .mini-chart-wrap {
+      height: 60px;
+      padding: 0 22px;
+      margin: 4px 0 16px;
+    }
+
+    /* ── CARD FOOTER ── */
+    .card-footer {
+      padding: 14px 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-meta-info {
+      display: flex;
+      gap: 18px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .meta-label {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .meta-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toggle-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+    .toggle-btn .arrow { transition: transform 0.2s; display: inline-block; }
+    .toggle-btn.open .arrow { transform: rotate(180deg); }
+
+    /* ── HOLDINGS PANEL ── */
+    .holdings-panel {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: #FAFBFD;
+    }
+    .holdings-panel.open { display: block; }
+    .holdings-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .holdings-table th {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      background: #F8FAFC;
+    }
+    .holdings-table td {
+      font-size: 13px;
+      padding: 11px 14px;
+      border-bottom: 1px solid #F1F5F9;
+      color: var(--text);
+      vertical-align: middle;
+    }
+    .holdings-table tr:last-child td { border-bottom: none; }
+    .holdings-table tr:hover td { background: #F0F4FF; }
+    .ticker-cell {
+      font-weight: 700;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: var(--navy);
+    }
+    .alloc-bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .alloc-bar {
+      height: 5px;
+      background: #E2E8F0;
+      border-radius: 3px;
+      width: 60px;
+      overflow: hidden;
+    }
+    .alloc-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--navy-light), var(--gold));
+      border-radius: 3px;
+    }
+    .return-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .return-pill.pos { background: var(--green-bg); color: #065F46; }
+    .return-pill.neg { background: var(--red-bg); color: #991B1B; }
+    .return-pill.na  { background: #F1F5F9; color: var(--text-muted); }
+
+    /* ── LOADING / EMPTY STATES ── */
+    .loading-state, .error-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .loading-spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-state p { color: var(--text-muted); font-size: 14px; }
+    .error-state p { color: var(--red); font-size: 14px; max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-top: 40px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .disclaimer-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .disclaimer-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .disclaimer-text strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      line-height: 1.8;
+    }
+    .footer a { color: var(--gold-light); text-decoration: none; }
+    .footer strong { color: rgba(255,255,255,0.85); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero h2 { font-size: 26px; }
+      .hero-stats { gap: 18px; }
+      .hero-stat-val { font-size: 20px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .card-return-val { font-size: 22px; }
+      .holdings-table th, .holdings-table td { padding: 9px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-badge">NNR</div>
+      <div class="logo-text">
+        <h1>Niel &amp; Ray Financial Services</h1>
+        <p>Curated by CA Sanjay Ray Chowdhury</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="last-updated">Prices updated: <span id="lastUpdated">Loading…</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">📊 Live Portfolio Tracker</div>
+    <h2>Research-Driven <span>Curated Portfolios</span></h2>
+    <p>High-conviction portfolios built on fundamental research, thematic opportunities, and behavioral discipline. Tracked live. Zero noise.</p>
+    <div class="hero-stats" id="heroStats">
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="totalPortfolios">—</div>
+        <div class="hero-stat-label">Active Portfolios</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="totalStocks">—</div>
+        <div class="hero-stat-label">Total Positions</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val pos" id="avgReturn">—</div>
+        <div class="hero-stat-label">Avg Portfolio Return</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAIN ── -->
+<main class="main">
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All Portfolios</button>
+    <button class="filter-btn" data-filter="US">🇺🇸 US Markets</button>
+    <button class="filter-btn" data-filter="IN">🇮🇳 Indian Markets</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading portfolio data…</p>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <div class="disclaimer-icon">ℹ️</div>
+    <div class="disclaimer-text">
+      <strong>Important Disclosure:</strong> These portfolios are curated for educational and research purposes by CA Sanjay Ray Chowdhury, NNR Financial Services. Past performance is not indicative of future returns. This is not a SEBI-registered investment advisory service. All investment decisions are the sole responsibility of the investor. Please consult a registered investment advisor before making investment decisions. Prices auto-update daily on trading days via Yahoo Finance.
+    </div>
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <strong>Niel &amp; Ray Financial Services</strong> · Promoter Wealth Advisory · Mumbai, India<br/>
+  <a href="https://www.nielnray.com" target="_blank">www.nielnray.com</a> · Follow on
+  <a href="https://www.linkedin.com/in/sanjayraychowdhury" target="_blank">LinkedIn</a> ·
+  Newsletter: <a href="#" target="_blank">Buffett's Blueprint</a>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  CONFIG
+// ─────────────────────────────────────────────
+const PORTFOLIOS_URL = './data/portfolios.json';
+const PRICES_URL     = './data/prices.json';
+
+let allPortfolios = [];
+let pricesData    = {};
+let activeFilter  = 'all';
+const miniCharts  = {};
+
+// ─────────────────────────────────────────────
+//  DATA LOADING
+// ─────────────────────────────────────────────
+async function loadData() {
+  try {
+    const [pRes, prRes] = await Promise.all([
+      fetch(PORTFOLIOS_URL + '?t=' + Date.now()),
+      fetch(PRICES_URL     + '?t=' + Date.now())
+    ]);
+    if (!pRes.ok || !prRes.ok) throw new Error('Could not load data files.');
+    allPortfolios = (await pRes.json()).portfolios || [];
+    pricesData    = (await prRes.json());
+    return true;
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+
+// ─────────────────────────────────────────────
+//  CALCULATIONS
+// ─────────────────────────────────────────────
+function getPrice(ticker) {
+  return pricesData.prices?.[ticker] || null;
+}
+
+function calcHolding(h) {
+  const p = getPrice(h.ticker);
+  if (!p || !h.buy_price || !h.quantity) return null;
+  const buyVal     = h.buy_price * h.quantity;
+  const currentVal = p.price * h.quantity;
+  const retPct     = ((currentVal - buyVal) / buyVal) * 100;
+  return { buyVal, currentVal, retPct, currentPrice: p.price, change1d: p.change_pct || 0 };
+}
+
+function calcPortfolio(portfolio) {
+  let totalBuy = 0, totalCurrent = 0, validCount = 0;
+  portfolio.holdings.forEach(h => {
+    const c = calcHolding(h);
+    if (c) { totalBuy += c.buyVal; totalCurrent += c.currentVal; validCount++; }
+  });
+  const retPct = totalBuy > 0 ? ((totalCurrent - totalBuy) / totalBuy) * 100 : null;
+  return { totalBuy, totalCurrent, retPct, validCount };
+}
+
+function fmtPct(val) {
+  if (val === null || val === undefined || isNaN(val)) return '—';
+  const sign = val >= 0 ? '+' : '';
+  return sign + val.toFixed(2) + '%';
+}
+
+function fmtCurrency(val, currency) {
+  if (!val) return '—';
+  const sym = currency === 'INR' ? '₹' : '$';
+  if (Math.abs(val) >= 1e6) return sym + (val / 1e6).toFixed(2) + 'M';
+  if (Math.abs(val) >= 1e3) return sym + (val / 1e3).toFixed(1) + 'K';
+  return sym + val.toFixed(0);
+}
+
+function colorClass(val) {
+  if (val === null || isNaN(val)) return 'neutral';
+  return val >= 0 ? 'pos' : 'neg';
+}
+
+// ─────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────
+function renderHeroStats() {
+  const visible = allPortfolios.filter(p =>
+    activeFilter === 'all' || p.market === activeFilter
+  );
+  const totalStocks = visible.reduce((sum, p) => sum + p.holdings.length, 0);
+  const returns = visible.map(p => calcPortfolio(p).retPct).filter(r => r !== null);
+  const avgReturn = returns.length ? returns.reduce((a, b) => a + b, 0) / returns.length : null;
+
+  document.getElementById('totalPortfolios').textContent = visible.length;
+  document.getElementById('totalStocks').textContent = totalStocks;
+  const el = document.getElementById('avgReturn');
+  el.textContent = fmtPct(avgReturn);
+  el.className = 'hero-stat-val ' + colorClass(avgReturn);
+}
+
+function renderMiniChart(canvasId, holdings) {
+  const ctx = document.getElementById(canvasId);
+  if (!ctx) return;
+  if (miniCharts[canvasId]) { miniCharts[canvasId].destroy(); }
+
+  const labels = holdings.map(h => h.ticker);
+  const data   = holdings.map(h => h.allocation_pct);
+  const colors = [
+    '#1A3260','#C9913A','#10B981','#6D28D9','#EF4444',
+    '#0EA5E9','#F59E0B','#8B5CF6','#EC4899','#14B8A6'
+  ];
+
+  miniCharts[canvasId] = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 0, hoverOffset: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: (ctx) => ` ${ctx.label}: ${ctx.parsed}%` }
+      }},
+      cutout: '65%'
+    }
+  });
+}
+
+function buildHoldingsRows(portfolio) {
+  return portfolio.holdings.map(h => {
+    const calc = calcHolding(h);
+    const retPct   = calc ? fmtPct(calc.retPct)   : '—';
+    const retClass = calc ? colorClass(calc.retPct) : 'na';
+    const cmp      = calc ? fmtCurrency(calc.currentPrice, portfolio.currency) : '—';
+    const buyStr   = h.buy_price ? fmtCurrency(h.buy_price, portfolio.currency) : '—';
+    const change1d = calc ? fmtPct(calc.change1d)  : '—';
+    const chgClass = calc ? colorClass(calc.change1d) : 'na';
+    const allocPct = h.allocation_pct || 0;
+
+    return `
+      <tr>
+        <td class="ticker-cell">${h.ticker}</td>
+        <td style="max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${h.name}">${h.name}</td>
+        <td>
+          <div class="alloc-bar-wrap">
+            <div class="alloc-bar"><div class="alloc-bar-fill" style="width:${Math.min(allocPct,100)}%"></div></div>
+            <span style="font-size:12px; font-weight:600; color:var(--navy);">${allocPct}%</span>
+          </div>
+        </td>
+        <td style="font-size:12.5px; color:var(--text-muted);">${buyStr}</td>
+        <td style="font-weight:600;">${cmp}</td>
+        <td><span class="return-pill ${retClass}">${retPct}</span></td>
+        <td style="font-size:12px;" class="${chgClass === 'pos' ? '' : ''}">${change1d !== '—' ? `<span style="color:${chgClass==='pos'?'var(--green)':'var(--red)'}">${change1d}</span>` : '—'}</td>
+      </tr>`;
+  }).join('');
+}
+
+function renderCard(portfolio, index) {
+  const calc    = calcPortfolio(portfolio);
+  const retPct  = calc.retPct;
+  const retStr  = fmtPct(retPct);
+  const retCls  = colorClass(retPct);
+  const canvasId = `chart-${index}`;
+
+  const marketBadge = portfolio.market === 'US'
+    ? `<span class="badge badge-us">🇺🇸 US Markets</span>`
+    : `<span class="badge badge-india">🇮🇳 Indian Markets</span>`;
+
+  const typeBadge = portfolio.type === 'ETF'
+    ? `<span class="badge badge-etf">ETF Portfolio</span>`
+    : `<span class="badge badge-equity">Equity Portfolio</span>`;
+
+  const themeBadge = portfolio.theme
+    ? `<span class="badge badge-theme">${portfolio.theme}</span>`
+    : '';
+
+  const totalCurrentVal = fmtCurrency(calc.totalCurrent, portfolio.currency);
+  const totalBuyVal     = fmtCurrency(calc.totalBuy,     portfolio.currency);
+  const holdingsCount   = portfolio.holdings.length;
+  const validStr        = calc.validCount < holdingsCount
+    ? `<span style="color:var(--text-muted);font-size:11px;"> (${calc.validCount}/${holdingsCount} priced)</span>` : '';
+
+  return `
+    <div class="portfolio-card" data-market="${portfolio.market}" data-id="${portfolio.id}">
+      <div class="card-top">
+        <div class="card-badges">
+          ${marketBadge}${typeBadge}${themeBadge}
+          <span class="badge badge-live">● Live</span>
+        </div>
+        <div class="card-name">${portfolio.name}</div>
+        <div class="card-desc">${portfolio.description}</div>
+
+        <div class="card-return-row">
+          <div class="card-return-main">
+            <div class="card-return-label">Total Return (Since Entry)</div>
+            <div class="card-return-val ${retCls}">${retStr}</div>
+          </div>
+          <div class="card-value-info">
+            <div class="card-value-label">Current Value</div>
+            <div class="card-value-amt">${totalCurrentVal}</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Cost: ${totalBuyVal}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-chart-wrap">
+        <canvas id="${canvasId}" height="60"></canvas>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-meta-info">
+          <div class="meta-item">
+            <span class="meta-label">Holdings${validStr}</span>
+            <span class="meta-val">${holdingsCount} positions</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Launched</span>
+            <span class="meta-val">${portfolio.created_date || '—'}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Currency</span>
+            <span class="meta-val">${portfolio.currency || '—'}</span>
+          </div>
+        </div>
+        <button class="toggle-btn" onclick="toggleHoldings('${portfolio.id}', this)">
+          Holdings <span class="arrow">▼</span>
+        </button>
+      </div>
+
+      <div class="holdings-panel" id="holdings-${portfolio.id}">
+        <table class="holdings-table">
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Name</th>
+              <th>Allocation</th>
+              <th>Buy Price</th>
+              <th>CMP</th>
+              <th>Return</th>
+              <th>1D Change</th>
+            </tr>
+          </thead>
+          <tbody>${buildHoldingsRows(portfolio)}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function renderAll() {
+  const grid = document.getElementById('portfolioGrid');
+  const visible = allPortfolios.filter(p =>
+    activeFilter === 'all' || p.market === activeFilter
+  );
+
+  if (visible.length === 0) {
+    grid.innerHTML = `<div class="error-state"><p>No portfolios found for this filter.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = visible.map((p, i) => renderCard(p, i)).join('');
+
+  requestAnimationFrame(() => {
+    visible.forEach((p, i) => renderMiniChart(`chart-${i}`, p.holdings));
+  });
+
+  renderHeroStats();
+}
+
+// ─────────────────────────────────────────────
+//  INTERACTIONS
+// ─────────────────────────────────────────────
+function toggleHoldings(portfolioId, btn) {
+  const panel = document.getElementById(`holdings-${portfolioId}`);
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.innerHTML = isOpen
+    ? 'Holdings <span class="arrow">▼</span>'
+    : 'Holdings <span class="arrow">▼</span>';
+}
+
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  renderAll();
+});
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+async function init() {
+  const result = await loadData();
+
+  if (result && result.error) {
+    document.getElementById('portfolioGrid').innerHTML = `
+      <div class="error-state">
+        <p>⚠️ <strong>Could not load portfolio data.</strong><br/><br/>
+        If viewing locally, run: <code>python -m http.server 8000</code> in the folder, then open
+        <strong>localhost:8000</strong>.<br/><br/>
+        On GitHub Pages this works automatically.<br/><br/>
+        Error: ${result.error}</p>
+      </div>`;
+    document.getElementById('lastUpdated').textContent = 'Unavailable';
+    return;
+  }
+
+  const lastUpd = pricesData.last_updated
+    ? new Date(pricesData.last_updated).toLocaleString('en-IN', {
+        day:'2-digit', month:'short', year:'numeric',
+        hour:'2-digit', minute:'2-digit', timeZone:'Asia/Kolkata'
+      }) + ' IST'
+    : 'See data/prices.json';
+
+  document.getElementById('lastUpdated').textContent = lastUpd;
+  renderAll();
+}
+
+init();
+</script>
+</body>
+</html>
