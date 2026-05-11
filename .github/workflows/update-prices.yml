@@ -2,8 +2,10 @@ name: Update Portfolio Prices
 
 on:
   schedule:
+    # 9:00 AM UTC = 2:30 PM IST  |  Runs Mon–Fri
     - cron: '0 9 * * 1-5'
   workflow_dispatch:
+    # Allows manual trigger from GitHub Actions UI
 
 jobs:
   update-prices:
@@ -11,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: write   # Required to commit prices.json back to repo
 
     steps:
       - name: Checkout repository
@@ -21,7 +23,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       - name: Install dependencies
         run: pip install yfinance
