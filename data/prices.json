@@ -1,80 +1,80 @@
 {
-  "last_updated": "2026-07-15T10:42:04",
+  "last_updated": "2026-07-16T10:49:06",
   "source": "Yahoo Finance via yfinance",
   "prices": {
     "QQQ": {
-      "price": 711.74,
-      "change_pct": 0.0,
+      "price": 717.74,
+      "change_pct": -0.27,
       "name": "Invesco QQQ Trust (Nasdaq 100)"
     },
     "VGT": {
-      "price": 115.58,
-      "change_pct": 0.0,
+      "price": 116.5,
+      "change_pct": -0.52,
       "name": "Vanguard Information Technology ETF"
     },
     "SOXX": {
-      "price": 553.61,
-      "change_pct": 0.0,
+      "price": 555.27,
+      "change_pct": -2.23,
       "name": "iShares Semiconductor ETF"
     },
     "ARKK": {
-      "price": 79.52,
-      "change_pct": 1.64,
+      "price": 79.6,
+      "change_pct": 0.1,
       "name": "ARK Innovation ETF"
     },
     "SCHD": {
-      "price": 32.56,
-      "change_pct": 0.0,
+      "price": 32.34,
+      "change_pct": 0.43,
       "name": "Schwab US Dividend Equity ETF"
     },
     "SPY": {
-      "price": 749.17,
-      "change_pct": 0.0,
+      "price": 754.81,
+      "change_pct": 0.4,
       "name": "SPDR S&P 500 ETF Trust"
     },
     "VNQ": {
-      "price": 97.83,
-      "change_pct": 0.0,
+      "price": 97.86,
+      "change_pct": 0.3,
       "name": "Vanguard Real Estate ETF"
     },
     "TLT": {
-      "price": 83.97,
-      "change_pct": 0.0,
+      "price": 84.24,
+      "change_pct": 0.19,
       "name": "iShares 20+ Year Treasury Bond ETF"
     },
     "GLD": {
-      "price": 367.13,
-      "change_pct": 0.0,
+      "price": 372.35,
+      "change_pct": 0.05,
       "name": "SPDR Gold Shares ETF"
     },
     "INFY.NS": {
-      "price": 1076.3,
-      "change_pct": -1.52,
+      "price": 1082.4,
+      "change_pct": 0.57,
       "name": "Infosys Ltd"
     },
     "WIPRO.NS": {
-      "price": 174.65,
-      "change_pct": -1.41,
+      "price": 177.74,
+      "change_pct": 1.77,
       "name": "Wipro Ltd"
     },
     "SUNPHARMA.NS": {
-      "price": 1951.5,
-      "change_pct": 0.46,
+      "price": 1950.1,
+      "change_pct": -0.07,
       "name": "Sun Pharmaceutical Industries"
     },
     "DRREDDY.NS": {
-      "price": 1229.5,
-      "change_pct": -1.34,
+      "price": 1224.4,
+      "change_pct": -0.41,
       "name": "Dr. Reddy's Laboratories"
     },
     "PAGEIND.NS": {
-      "price": 40395.0,
-      "change_pct": -0.33,
+      "price": 40460.0,
+      "change_pct": 0.16,
       "name": "Page Industries Ltd"
     },
     "TCS.NS": {
-      "price": 2189.2,
-      "change_pct": 0.03,
+      "price": 2201.0,
+      "change_pct": 0.54,
       "name": "Tata Consultancy Services"
     }
   }
