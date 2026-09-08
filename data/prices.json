@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-07T14:35:10",
+  "last_updated": "2026-09-08T13:10:06",
   "source": "Yahoo Finance via yfinance",
   "prices": {
     "QQQ": {
@@ -48,33 +48,33 @@
       "name": "SPDR Gold Shares ETF"
     },
     "INFY.NS": {
-      "price": 1087.5,
-      "change_pct": -3.76,
+      "price": 1082.0,
+      "change_pct": -0.51,
       "name": "Infosys Ltd"
     },
     "WIPRO.NS": {
-      "price": 172.8,
-      "change_pct": -2.04,
+      "price": 171.5,
+      "change_pct": -0.75,
       "name": "Wipro Ltd"
     },
     "SUNPHARMA.NS": {
-      "price": 1895.0,
-      "change_pct": -0.21,
+      "price": 1885.9,
+      "change_pct": -0.48,
       "name": "Sun Pharmaceutical Industries"
     },
     "DRREDDY.NS": {
-      "price": 1144.2,
-      "change_pct": -0.59,
+      "price": 1151.0,
+      "change_pct": 0.59,
       "name": "Dr. Reddy's Laboratories"
     },
     "PAGEIND.NS": {
-      "price": 35825.0,
-      "change_pct": -1.31,
+      "price": 35915.0,
+      "change_pct": 0.25,
       "name": "Page Industries Ltd"
     },
     "TCS.NS": {
-      "price": 2270.0,
-      "change_pct": -1.48,
+      "price": 2255.5,
+      "change_pct": -0.64,
       "name": "Tata Consultancy Services"
     }
   }
