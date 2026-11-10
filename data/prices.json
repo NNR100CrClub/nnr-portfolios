@@ -1,50 +1,50 @@
 {
-  "last_updated": "2026-11-09T19:19:33",
+  "last_updated": "2026-11-10T16:40:22",
   "source": "Yahoo Finance via yfinance",
   "prices": {
     "QQQ": {
-      "price": 677.16,
-      "change_pct": 3.21,
+      "price": 671.53,
+      "change_pct": -1.15,
       "name": "Invesco QQQ Trust (Nasdaq 100)"
     },
     "VGT": {
-      "price": 111.57,
-      "change_pct": 2.82,
+      "price": 110.15,
+      "change_pct": -1.63,
       "name": "Vanguard Information Technology ETF"
     },
     "SOXX": {
-      "price": 145.54,
-      "change_pct": 6.6,
+      "price": 144.92,
+      "change_pct": -1.25,
       "name": "iShares Semiconductor ETF"
     },
     "ARKK": {
-      "price": 78.73,
-      "change_pct": 4.33,
+      "price": 76.51,
+      "change_pct": -3.13,
       "name": "ARK Innovation ETF"
     },
     "SCHD": {
-      "price": 0.0,
-      "change_pct": 0.0,
+      "price": 35.56,
+      "change_pct": -0.25,
       "name": "Schwab US Dividend Equity ETF"
     },
     "SPY": {
-      "price": 752.35,
-      "change_pct": 2.32,
+      "price": 746.76,
+      "change_pct": -0.79,
       "name": "SPDR S&P 500 ETF Trust"
     },
     "VNQ": {
-      "price": 97.58,
-      "change_pct": 1.93,
+      "price": 96.56,
+      "change_pct": -0.76,
       "name": "Vanguard Real Estate ETF"
     },
     "TLT": {
-      "price": 81.92,
-      "change_pct": -0.01,
+      "price": 80.69,
+      "change_pct": -1.55,
       "name": "iShares 20+ Year Treasury Bond ETF"
     },
     "GLD": {
-      "price": 376.15,
-      "change_pct": 0.97,
+      "price": 368.49,
+      "change_pct": -2.91,
       "name": "SPDR Gold Shares ETF"
     },
     "INFY.NS": {
